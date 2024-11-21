@@ -29,6 +29,11 @@ export default function Landing() {
     const totalExpense = entries.filter(entry => entry.type === 'Expense').reduce((total,entry) => total+entry.amount,0);
     const netAmount = (totalAmount-totalExpense).toFixed(2)
 
+    const deleteEntry = (index) => {
+        const newEntries = entries.filter((entry,i) => i !== index);
+        setEntries(newEntries);
+    }
+
     // const netAmount = entries.reduce((total,entry) => total.entry.amount,0);
     return (
         <>
@@ -47,16 +52,23 @@ export default function Landing() {
                     </form>
                     <div className="displayData">
                         <table className="displayTable">
+                            <thead>
+                                <td>Amount</td>
+                                <td>Description</td>
+                                <td>Date</td>
+                                <td>Type</td>
+                                <td></td>
+                            </thead>
                             <tbody className="displayTableBody">
-                                {entries.map((entry) => (
-                                    <TableRow amount = {entry.amount} description = {entry.description} date = {entry.date} type = {entry.type}/>
+                                {entries.map((entry,index) => (
+                                    <TableRow amount = {entry.amount} description = {entry.description} date = {entry.date} type = {entry.type} onClick = {() => deleteEntry(index)}/>
                                 ))}
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <div className="results">
-                    <h3>${netAmount}</h3>
+                    <h3>Total Net Income : ${netAmount}</h3>
                 </div>
             </div>
         </>

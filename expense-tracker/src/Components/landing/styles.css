@@ -4,3 +4,19 @@ table {
     width: 50%;
 
 }
+
+form > input{
+    width : 10rem;
+    height : 2rem;
+    margin: 0 0.2rem;
+}
+form > select{
+    width : 10rem;
+    height : 2rem;
+    margin: 0 0.2rem;
+}
+
+thead > td {
+    border: 1px solid black;
+}
+
